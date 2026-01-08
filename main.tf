@@ -117,13 +117,3 @@ resource "aws_instance" "web" {
   }
 }
 
-##################
-# Route 53 Record
-##################
-resource "aws_route53_record" "web_dns" {
-  zone_id = "ZXXXXXXXXXXXX"   # hosted zone ID
-  name    = "www.example.com"
-  type    = "A"
-  ttl     = "300"
-  records = ["${aws_instance.web.public_ip}"]
-}
