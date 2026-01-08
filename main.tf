@@ -9,7 +9,7 @@ provider "aws" {
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
-  tags {
+  tags = {
     Name = "demo-vpc"
   }
 }
@@ -34,7 +34,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
 
-  tags {
+  tags = {
     Name = "public-subnet"
   }
 }
@@ -50,7 +50,7 @@ resource "aws_route_table" "public_rt" {
     gateway_id = "${aws_internet_gateway.igw.id}"
   }
 
-  tags {
+  tags = {
     Name = "public-rt"
   }
 }
@@ -88,7 +88,7 @@ resource "aws_security_group" "web_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "web-sg"
   }
 }
@@ -111,7 +111,7 @@ resource "aws_instance" "web" {
               echo "<h1>Hello from Terraform EC2</h1>" > /var/www/html/index.html
               EOF
 
-  tags {
+  tags = {
     Name = "web-ec2"
   }
 }
